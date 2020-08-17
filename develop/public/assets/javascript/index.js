@@ -21,7 +21,7 @@ app.use('/', express.static(__dirname));
 
 // Routes
 // =========================================================== = line 17 serverSix
-app.get("/My Notes", (req, res) {
+app.get("/My Notes",function (req, res) {
   res.sendfile(path.join(public_DIR,"notes.html"));
 });
 
