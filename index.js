@@ -28,13 +28,31 @@ app.get("/My Notes",function (req, res) {
 app.get("/", function(req, res) {
     res.sendfile(path.join(public_DIR,"index.html"));
 });
-
+app.post("/", function(req, res) {
+  res.sendfile(path.join(public_DIR,"noteList.html"));
+});
+app.delete("/", function(req, res) {
+  res.sendfile(path.join(public_DIR,"noteList.html"));
 // YOUR CODE GOES HERE
 //
 //
+// 
+// Need Password generator for delete option unique ID creator
+
+
+
+
+// 
+// 
+
+
+
+
 
 // Listener
 // ===========================================================
 app.listen(PORT, function() {
   console.log("App listening on PORT " + PORT);
-});
+})
+}
+)
