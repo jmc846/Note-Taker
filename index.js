@@ -5,14 +5,14 @@
 const express = require("express");
 const path = require('path');
 const fs = require('fs');
-const public_DIR = path.resolve(__dirname,"assets");
+const public_DIR = path.resolve(__dirname,"public");
 const db = require('./develop/db/db.json');
 
 
 // ------Express app
 var app = express();
 //// Sets an initial port. We"ll use this later in our listener
-var PORT = process.env.PORT || 8080;
+var PORT = process.env.PORT || 7080;
 
 // Data
 // ===========================================================
@@ -52,13 +52,13 @@ ROUTER
 // These routes give our server a "map" of how to respond when users visit or request data from various URLs.
 
 
-require("./routes/notes")(app);
-require("./routes/noteList")(app);
+
+
+})
+
 
 // Listener
 // ===========================================================
 app.listen(PORT, function() {
   console.log("App listening on PORT " + PORT);
 })
-}
-)
