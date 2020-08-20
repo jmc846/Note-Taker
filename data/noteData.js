@@ -5,14 +5,14 @@
 // But you could have it be an empty array as well.
 // ===============================================================================
 
-var tableArray = [
+var noteArray = [
   {
-    customerName: "Ahmed",
-    customerEmail: "ahmed@example.com",
-    customerID: "afhaque89",
-    phoneNumber: "000-000-0000"
+    title: "Ahmed",
+    priority: "Urgent",
+    uniqueID: "afhaque89",
+    body: ""
   }
 ];
 
 // Note how we export the array. This makes it accessible to other files using require.
-module.exports = tableArray;
+module.exports = noteData;

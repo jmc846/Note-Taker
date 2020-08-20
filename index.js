@@ -6,10 +6,13 @@ const express = require("express");
 const path = require('path');
 const fs = require('fs');
 const public_DIR = path.resolve(__dirname,"assets");
-const db = require('./db/db.json');
+const db = require('./develop/db/db.json');
+
+
 // ------Express app
 var app = express();
-var PORT = 8080;
+//// Sets an initial port. We"ll use this later in our listener
+var PORT = process.env.PORT || 8080;
 
 // Data
 // ===========================================================
@@ -17,7 +20,7 @@ app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
 app.use('/', express.static(__dirname));
 
-//
+
 
 // Routes
 // =========================================================== = line 17 serverSix
@@ -44,10 +47,13 @@ app.delete("/", function(req, res) {
 
 // 
 // 
+ROUTER
+// The below points our server to a series of "route" files.
+// These routes give our server a "map" of how to respond when users visit or request data from various URLs.
 
 
-
-
+require("./routes/notes")(app);
+require("./routes/noteList")(app);
 
 // Listener
 // ===========================================================
