@@ -50,7 +50,7 @@
     <footer class="footer mt-4">
       <div class="container">
         <p>Control Panel</p>
-        <p><a href="#" id="clear">Search Notes</a> | <a href="/api/tables">Edit Note</a> | <a href="/api/delete">Delete Note         Delete Note</a>
+        <p><a href="#" id="clear">Search Notes</a> | <a href="/noteList">Edit Note</a> | <a href="delete">Delete Note         Delete Note</a>
       </div>
     </footer>
 
@@ -137,12 +137,29 @@
 
     // Clear the tables on the server and then empty the elements on the client
     $.ajax({ url: "/api/clear", method: "POST" }).then(function() {
-      $("#waitList").empty();
-      $("#tableList").empty();
+      $("#noteList").empty();
+   
     });
   }
+  function createId(){
+   alert('create unique id for each note')
+   var usableCharacters =  /^(([A-za-z-_]+[\s]{1}[A-za-z-_]+)|([A-Za-z-_]+))$/gim; 
+   
+   // create for loop to choose password character
+  for (let i = 0; i < passwordLength; i++) {
+    var index = Math.floor(Math.random() * usableCharacters.length);
+    password.push(usableCharacters[index]);
+  };
+// Write password to the #password input
+  password = password.join("");
+  // add password to display
+  document.getElementById('password').value = password;
+  //   console.log("This works")
+};
+  
 
   $("#clear").on("click", clearTable);
+  $('#idCreate').on('click',createID);
 
 
   // Run Queries!

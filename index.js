@@ -10,7 +10,7 @@ const db = require('./develop/db/db.json');
 
 
 // ------Express app
-var app = express();
+const app = express();
 //// Sets an initial port. We"ll use this later in our listener
 var PORT = process.env.PORT || 7080;
 
@@ -42,14 +42,6 @@ app.delete("/", function(req, res) {
 // 
 // Need Password generator for delete option unique ID creator
 
-
-
-
-// 
-// 
-ROUTER
-// The below points our server to a series of "route" files.
-// These routes give our server a "map" of how to respond when users visit or request data from various URLs.
 
 
 
