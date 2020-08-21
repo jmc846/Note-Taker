@@ -26,8 +26,8 @@ app.use('/', express.static(__dirname));
 
 // Routes
 // =========================================================== = line 17 serverSix
-require("./routes/apiRoutes")(app);
-require("./routes/htmlRoutes")(app);
+htmlRoutes = require("./routes/apiRoutes")(app);
+apiRoutes = require("./routes/htmlRoutes")(app);
 app.get("/My Notes",function (req, res) {
   res.sendfile(path.join(public_DIR,"notes.html"));
 });

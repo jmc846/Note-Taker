@@ -5,7 +5,7 @@
 // But you could have it be an empty array as well.
 // ===============================================================================
 
-var noteArray = [
+var noteData = [
   {
     title: "Ahmed",
     priority: "Urgent",

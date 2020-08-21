@@ -6,7 +6,7 @@
 // ===============================================================================
 
 
-var noteArray = [
+var noteListData= [
   {
     title: "Ahmed",
     priority: "Urgent",
