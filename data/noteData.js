@@ -16,3 +16,25 @@ var noteArray = [
 
 // Note how we export the array. This makes it accessible to other files using require.
 module.exports = noteData;
+
+// TODO: Write code to define and export the Employee class
+// class Note {
+//   constructor(title,priority,id, body) {
+//       this.title = name;      
+//       this.priority = priority;
+//       this.id = id;
+//       this.body = body;
+
+  
+//   }
+//   getId() {
+//       return this.id;
+//   }
+  
+
+
+
+
+// }
+
+// module.exports = Note

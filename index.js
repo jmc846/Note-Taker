@@ -7,6 +7,8 @@ const path = require('path');
 const fs = require('fs');
 const public_DIR = path.resolve(__dirname,"public");
 const db = require('./develop/db/db.json');
+var notes = require("./data/noteData");
+ var noteList = require("./data/noteListData");
 
 
 // ------Express app
@@ -24,6 +26,8 @@ app.use('/', express.static(__dirname));
 
 // Routes
 // =========================================================== = line 17 serverSix
+require("./routes/apiRoutes")(app);
+require("./routes/htmlRoutes")(app);
 app.get("/My Notes",function (req, res) {
   res.sendfile(path.join(public_DIR,"notes.html"));
 });
