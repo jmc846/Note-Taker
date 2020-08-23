@@ -38,14 +38,16 @@ module.exports = function(app) {
   app.post("/notes", function(req, res) {
     // Note the code here. Our "server" will respond to requests and let users know if they have a Note or not.
     // It will do this by sending out the value "true" have a note
+    var Record = req.body;
+    Record.id = Math.floor(Math.random() * 100000000);
     // req.body is available since we're using the body parsing middleware
     if (noteData.length < 5) {
-      noteData.push(req.body);
+      noteData.push(Record);
       // send a JSON string with the value true
       res.json(true);
     }
     else {
-      noteListData.push(req.body);
+      noteListData.push(Record);
       res.json(false);
     }
   });
