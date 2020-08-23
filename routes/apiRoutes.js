@@ -19,12 +19,12 @@ module.exports = function(app) {
   // (ex: localhost:PORT/api/admin... they are shown a JSON of the data in the table)
   // ---------------------------------------------------------------------------
 
-  app.get("/data/noteData", function(req, res) {
-    res.json(tableData);
+  app.get("/api/notes", function(req, res) {
+    res.json(noteData);
   });
 
-  app.get("/data/noteList", function(req, res) {
-    res.json(waitListData);
+  app.get("/api/noteList", function(req, res) {
+    res.json(noteListData);
   });
 
   // API POST Requests
@@ -35,7 +35,7 @@ module.exports = function(app) {
   // Then the server saves the data to the tableData array)
   // ---------------------------------------------------------------------------
 
-  app.post("/notes", function(req, res) {
+  app.post("/api/notes", function(req, res) {
     // Note the code here. Our "server" will respond to requests and let users know if they have a Note or not.
     // It will do this by sending out the value "true" have a note
     var Record = req.body;
