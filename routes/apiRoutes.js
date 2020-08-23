@@ -4,8 +4,8 @@
 // These data sources hold arrays of information on note-data, Notelist, etc.
 // ===============================================================================
 
-var note = require("../data/noteData");
-var noteList = require("../data/noteListData");
+var noteData = require("../data/noteData");
+var noteListData = require("../data/noteListData");
 
 
 // ===============================================================================
@@ -20,10 +20,12 @@ module.exports = function(app) {
   // ---------------------------------------------------------------------------
 
   app.get("/api/notes", function(req, res) {
+    
     res.json(noteData);
   });
 
   app.get("/api/noteList", function(req, res) {
+    
     res.json(noteListData);
   });
 
@@ -35,10 +37,12 @@ module.exports = function(app) {
   // Then the server saves the data to the tableData array)
   // ---------------------------------------------------------------------------
 
-  app.post("/api/notes", function(req, res) {
+  app.post("/api/noteList", function(req, res) {
     // Note the code here. Our "server" will respond to requests and let users know if they have a Note or not.
     // It will do this by sending out the value "true" have a note
     var Record = req.body;
+    var noteData = []
+    var noteListData = []
     Record.id = Math.floor(Math.random() * 100000000);
     // req.body is available since we're using the body parsing middleware
     if (noteData.length < 5) {
