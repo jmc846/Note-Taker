@@ -24,10 +24,10 @@ module.exports = function(app) {
     res.json(noteData);
   });
 
-  app.get("/api/noteList", function(req, res) {
+  // app.post("/api/noteList", function(req, res) {
     
-    res.json(noteListData);
-  });
+  //   res.json(noteListData);
+  // });
 
   // API POST Requests
   // Below code handles when a user submits a form and thus submits data to the server.
