@@ -4,30 +4,28 @@
 // These data sources hold arrays of information on note-data, Notelist, etc.
 // ===============================================================================
 
-var noteData = require("../data/noteData");
-var noteListData = require("../data/noteListData");
+const path = require('path');
+const fs = require('fs');
+let noteInfo = require('../db/db.json')
 
 
 // ===============================================================================
 // ROUTING
 // ===============================================================================
 
-module.exports = function(app) {
+module.exports = function (app) {
   // API GET Requests
   // Below code handles when users "visit" a page.
   // In each of the below cases when a user visits a link
   // (ex: localhost:PORT/api/admin... they are shown a JSON of the data in the table)
   // ---------------------------------------------------------------------------
 
-  app.get("/api/notes", function(req, res) {
-    
-    res.json(noteData);
+  app.get("/api/notes", function (req, res) {
+
+    res.json(noteInfo);
   });
 
-  // app.post("/api/noteList", function(req, res) {
-    
-  //   res.json(noteListData);
-  // });
+
 
   // API POST Requests
   // Below code handles when a user submits a form and thus submits data to the server.
@@ -37,34 +35,40 @@ module.exports = function(app) {
   // Then the server saves the data to the tableData array)
   // ---------------------------------------------------------------------------
 
-  app.post("/api/noteList", function(req, res) {
+  app.post("/api/notes", function (req, res) {
     // Note the code here. Our "server" will respond to requests and let users know if they have a Note or not.
     // It will do this by sending out the value "true" have a note
-    var Record = req.body;
-    var noteData = []
-    var noteListData = []
-    Record.id = Math.floor(Math.random() * 100000000);
-    // req.body is available since we're using the body parsing middleware
-    if (noteData.length < 5) {
-      noteData.push(Record);
-      // send a JSON string with the value true
-      res.json(true);
-    }
-    else {
-      noteListData.push(Record);
-      res.json(false);
-    }
-  });
+    let record = { id: req.body.id, title: req.body.title, text: req.body.text };
 
-  // ---------------------------------------------------------------------------
-  // I added this below code so you could clear out the note while working with the functionality.
-  // Don"t worry about it!
+    id = Math.floor(Math.random() * 100000000);
+    //push the note object to the noteBook array
+    noteInfo.push(record);
 
-  app.post("/api/clear", function(req, res) {
-    // Empty out the arrays of data
-    noteData.length = 0;
-    noteListData.length = 0;
-
-    res.json({ ok: true });
-  });
-};
+    fs.writeFile(path.join(__dirname, "../db/db.json"), JSON.stringify(noteInfo), err => {
+      if (err) throw err
+      res.send(record);
+      // console.log("post");
+    })
+  })
+    // ---------------------------------------------------------------------------
+    // I added this below code so you could clear out the note while working with the functionality.
+    // Don"t worry about it!
+    app.delete("/api/notes", function (req, res) {
+      // Empty out the arrays of data
+      // read all notes from the db.json file, return all notes EXCEPT the target
+      let target = req.params.id;
+      fs.readFile(path.join(__dirname, "../db/db.json"), "utf8", (err, data) => {
+        if (err) throw err
+        noteInfo = JSON.parse(data).filter((record) => {
+          return record.id !== target
+        })
+      })
+      //and then rewrite the rest of the notes to the db.json file
+      fs.writeFile(path.join(__dirname, "../db/db.json"), JSON.stringify(noteInfo), err => {
+        if (err) throw err
+        res.send(noteInfo);
+        // console.log("deleted")
+      })
+    
+    })
+  }
