@@ -55,7 +55,7 @@ the Deployed app on Heroku will be the test for the project
 jmc846@scarletmail.rutgers.edu
 
 ### gitHub profile:
-undefined
+[GitHub profile](https://github.com)
 
 ## Badges:
 [![License](https://poser.pugx.org/ali-irawan/xtra/license.svg)](https://poser.pugx.org/ali-irawan/xtra/license.svg)
