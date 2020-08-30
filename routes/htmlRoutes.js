@@ -26,10 +26,13 @@ module.exports = function(app) {
   });
 
   
+  app.delete("*", function(req, res) {
+    res.sendFile(path.join(__dirname, "../db/db.json"));
+  });
 
 
   // If no matching route is found default to home
   app.get("*", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/404.html"));
   });
-};
+}

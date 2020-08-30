@@ -53,14 +53,14 @@ module.exports = function (app) {
     // ---------------------------------------------------------------------------
     // I added this below code so you could clear out the note while working with the functionality.
     // Don"t worry about it!
-    app.delete("/api/notes", function (req, res) {
+    app.delete("/api/notes/id", function (req, res) {
       // Empty out the arrays of data
       // read all notes from the db.json file, return all notes EXCEPT the target
-      let target = req.params.id;
+      let target = req.body.id;
       fs.readFile(path.join(__dirname, "../db/db.json"), "utf8", (err, data) => {
         if (err) throw err
-        noteInfo = JSON.parse(data).filter((record) => {
-          return record.id !== target
+        noteInfo = JSON.parse(id).filter((record) => {
+          return record!== target
         })
       })
       //and then rewrite the rest of the notes to the db.json file
