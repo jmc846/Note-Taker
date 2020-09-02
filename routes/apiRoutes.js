@@ -53,7 +53,7 @@ module.exports = function (app) {
     // ---------------------------------------------------------------------------
     // I added this below code so you could clear out the note while working with the functionality.
     // Don"t worry about it!
-    app.delete("/api/notes/id", function (req, res) {
+    app.delete("/api/notes/:id", function (req, res) {
       // Empty out the arrays of data
       // read all notes from the db.json file, return all notes EXCEPT the target
       let target = req.body.id;
