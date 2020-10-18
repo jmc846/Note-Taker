@@ -21,11 +21,12 @@ module.exports = function (app) {
   // ---------------------------------------------------------------------------
 
   app.get("/api/notes", function (req, res) {
-    //  fs.readFile(path.join(__dirname, "../db/db.json"), JSON.parse(noteInfo), err => {
-    //   if (err) throw err
-    //        }).then (notes=>{
-    //          console.log(notes)
-    //        })
+    fs.readFile(path.join(__dirname, "../db/db.json"), JSON.parse(noteInfo), err => {
+      if (err) throw err
+    }).then (notes=>{
+      console.log(notes)
+      noteInfo.push(notes)
+    })
     res.json(noteInfo);
   });
 
@@ -70,6 +71,13 @@ module.exports = function (app) {
         noteInfo.filter((record) => {
           return record !== target
         })
+
+        //app.delete('/api/notes/:id', function (req, res){
+        // deleting one note in db.json
+    //  db.splice(req.params.id,1);
+    //  db.forEach(note=> {
+    //      note.id=db.indexOf(note)
+    //  })
       })
       //and then rewrite the rest of the notes to the db.json file
       fs.writeFile(path.join(__dirname, "../db/db.json"), JSON.stringify(noteInfo), err => {
